@@ -127,12 +127,15 @@
                                 Usuarios
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarUserDropdown">
-                                <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesion</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesion</a></li>
-                                <li><a class="dropdown-item" href="{% url 'Register' %}">Registrarse</a></li>
+                                {% if request.user.is_authenticated %}
+                                    <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar Perfil</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesion</a></li>
+                                {% else %}
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesion</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Register' %}">Registrarse</a></li>
+                                {% endif %}
                             </ul>
                         </li>
-
                         {% if request.user.is_authenticated %}
                             <li class="nav-item mx-0 mx-lg-1 d-flex align-items-center">
                                 <span class="username-display nav-link py-3 px-0 px-lg-3">Usuario logueado: {{ request.user.username }}</span>

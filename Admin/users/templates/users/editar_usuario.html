@@ -1,0 +1,98 @@
+{% extends 'APP/BASE.html' %}
+
+{% load static %}
+
+{% block title %} Cambiar Contraseña {% endblock title %}
+
+{% block main %}
+<style>
+    .page-section {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .page-section-heading {
+        color: #e60000 !important;
+        text-transform: uppercase;
+    }
+
+    .divider-custom-line {
+        background-color: #e60000;
+    }
+
+    .divider-custom-icon i {
+        color: #e60000;
+    }
+
+    .form-control {
+        background-color: #1a1a1a;
+        border: 1px solid #333333;
+        color: #ffffff;
+    }
+
+    .form-control:focus {
+        background-color: #1a1a1a;
+        border-color: #e60000;
+        box-shadow: none;
+        color: #ffffff;
+    }
+
+    .btn-primary {
+        background-color: #e60000;
+        border-color: #e60000;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .btn-primary:hover {
+        background-color: #ff1a1a;
+        border-color: #ff1a1a;
+    }
+
+    .btn-secondary {
+        background-color: #1a1a1a;
+        border-color: #333333;
+        color: #e60000;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+
+    .btn-secondary:hover {
+        background-color: #333333;
+        border-color: #e60000;
+        color: #ffffff;
+    }
+</style>
+
+<section class="page-section" id="change-password">
+    <div class="container">
+        <!-- Título -->
+        <h2 class="page-section-heading text-center mb-4">Cambiar Contraseña</h2>
+        <div class="divider-custom mb-4">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="row justify-content-center">
+            <div class="col-lg-6">
+                <form action="" method="POST" class="border p-4 rounded shadow-sm">
+                    {% csrf_token %}
+                    {{ mi_form.as_p }}
+                    <div class="text-center mt-4">
+                        <button type="submit" class="btn btn-primary btn-xl">Actualizar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <!-- Botón para ir a "Cambiar Password" -->
+        <div class="text-center mt-4">
+            <a href="{% url 'CambiarPass' %}" class="btn btn-secondary btn-xl">Cambiar Password</a>
+        </div>
+    </div>
+</section>
+{% endblock main %}
