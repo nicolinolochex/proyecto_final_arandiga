@@ -1,0 +1,7 @@
+# Archivos de pipenv. Sólo dejamos requirements.txt
+Pipfile
+Pipfile.lock
+
+# Archivos de compilación de Python
+__pycache__/
+*.pyc
