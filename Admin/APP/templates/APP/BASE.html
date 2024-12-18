@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Freelancer - Start Bootstrap Theme</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="{% static 'APP/css/styles.css' %}" rel="stylesheet" />
+        <style>
+            #mainNav {
+                background-color: #000000;
+            }
+            #mainNav .navbar-brand {
+                color: #e60000;
+                font-weight: 700;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+            }
+            #mainNav .navbar-brand:hover {
+                color: #ff1a1a;
+            }
+            #mainNav .navbar-nav .nav-link {
+                color: #ffffff;
+                font-weight: 500;
+                transition: color 0.2s ease-in-out;
+            }
+            #mainNav .navbar-nav .nav-link:hover {
+                color: #cccccc;
+            }
+            #mainNav .navbar-toggler {
+                border: none;
+                background-color: #e60000;
+            }
+            #mainNav .navbar-toggler:hover {
+                background-color: #ff1a1a;
+            }
+            .dropdown-menu {
+                background-color: #1a1a1a;
+            }
+            .dropdown-menu .dropdown-item {
+                color: #ffffff;
+            }
+            .dropdown-menu .dropdown-item:hover {
+                background-color: #333333;
+                color: #ffffff;
+            }
+
+            footer.footer {
+                background-color: #000000;
+                color: #ffffff;
+                padding: 4rem 0;
+            }
+            footer.footer h4 {
+                color: #e60000;
+                text-transform: uppercase;
+                margin-bottom: 1.5rem;
+            }
+            footer.footer .lead {
+                color: #ffffff;
+            }
+            footer.footer .btn-social {
+                border: 1px solid #e60000;
+                color: #e60000;
+                transition: all 0.2s ease-in-out;
+            }
+            footer.footer .btn-social:hover {
+                background-color: #e60000;
+                color: #000000;
+                border-color: #e60000;
+            }
+
+            .username-display {
+                color: #e60000 !important; /* Forzamos el color rojo */
+                font-weight: 700;
+                margin-right: 1rem;
+                text-transform: uppercase;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg text-uppercase fixed-top" id="mainNav">
+            <div class="container-fluid">
+                <span class="navbar-brand">Hyper Solutions</span>
+                <button class="navbar-toggler text-white" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto">
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3" href="{% url 'inicio' %}">Home</a>
+                        </li>
+                        <li class="nav-item dropdown mx-0 mx-lg-1">
+                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Publica tu Hyper Car
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <li><a class="dropdown-item" href="{% url 'publicar_rodado' %}">Publica tu Auto</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Buscar_Vehiculo' %}">Autos ya en Agencias</a></li>
+                            </ul>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3" href="{% url 'vehiculos-list' %}">Vehículos Publicados</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3" href="{% url 'publicar_cv' %}">Trabaja con Nosotros</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3" href="{% url 'formulario' %}">Contáctanos</a>
+                        </li>
+                        <li class="nav-item mx-0 mx-lg-1">
+                            <a class="nav-link py-3 px-0 px-lg-3" href="{% url 'aboutv2' %}">Nosotros</a>
+                        </li>
+                        <li class="nav-item dropdown mx-0 mx-lg-1">
+                            <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Usuarios
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarUserDropdown">
+                                <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesion</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesion</a></li>
+                                <li><a class="dropdown-item" href="{% url 'Register' %}">Registrarse</a></li>
+                            </ul>
+                        </li>
+
+                        {% if request.user.is_authenticated %}
+                            <li class="nav-item mx-0 mx-lg-1 d-flex align-items-center">
+                                <span class="username-display nav-link py-3 px-0 px-lg-3">Usuario logueado: {{ request.user.username }}</span>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        {% block main %}
+        {% endblock main %}
+
+        <!-- Footer-->
+        <footer class="footer text-center">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">Location</h4>
+                        <p class="lead mb-0">
+                            Avenida Siempre Viva 742
+                            <br />
+                            Springfield, USA
+                        </p>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">Around the Web</h4>
+                        <a class="btn btn-social mx-1" href="https://www.linkedin.com/in/catriel-nicolas-arandiga" target="_blank">
+                            <i class="fab fa-fw fa-linkedin-in"></i>
+                        </a>
+                    </div>
+                    <div class="col-lg-4 mb-5 mb-lg-0">
+                        <h4 class="mb-4">About Us</h4>
+                        <p class="lead mb-0">
+                            This platform helps connect users with vehicles and opportunities. Powered by passion and technology.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        
+        <div class="copyright py-4 text-center text-white">
+            <div class="container"><small>Copyright &copy; Catriel Arandiga 2024</small></div>
+        </div>
+
+        <script src="{% static 'APP/js/scripts.js' %}"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+</html>

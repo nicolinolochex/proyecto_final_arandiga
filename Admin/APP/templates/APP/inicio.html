@@ -1,0 +1,133 @@
+{% extends 'APP/BASE.html' %}
+
+{% load static %}
+
+{% block main %}
+<style>
+    .page-section.portfolio {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 60px;
+        padding-bottom: 60px;
+    }
+
+    .page-section-heading {
+        color: #e60000 !important;
+    }
+
+    .divider-custom-line {
+        background-color: #e60000;
+    }
+
+    .divider-custom-icon i {
+        color: #e60000;
+    }
+
+    .carousel-item img {
+        max-height: 500px; 
+        object-fit: contain; 
+        margin: 0 auto; 
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        filter: invert(100%);
+    }
+
+    .carousel-indicators [data-bs-target] {
+        background-color: #e60000; 
+    }
+    .carousel-indicators .active {
+        background-color: #ff1a1a;
+    }
+
+    .carousel-caption {
+        background: rgba(0,0,0,0.5);
+        padding: 1rem;
+        border-radius: 0.5rem;
+    }
+</style>
+<section class="page-section portfolio" id="portfolio" style="margin-top: 50px;">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase mb-0">Hyper Cars Available</h2>
+        <div class="divider-custom my-4">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <!-- Carousel -->
+        <div id="carCarousel" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="3" aria-label="Slide 4"></button>
+                <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="4" aria-label="Slide 5"></button>
+                <button type="button" data-bs-target="#carCarousel" data-bs-slide-to="5" aria-label="Slide 6"></button>
+            </div>
+
+            <div class="carousel-inner">
+                <!-- Auto 1: Porsche -->
+                <div class="carousel-item active">
+                    <img src="{% static 'APP/assets/img/portfolio/porche.png' %}" class="d-block" alt="Porsche">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Porsche</h5>
+                        <p>Diseño icónico y performance incomparable</p>
+                    </div>
+                </div>
+                <!-- Auto 2: Bugatti Chiron -->
+                <div class="carousel-item">
+                    <img src="{% static 'APP/assets/img/portfolio/CHIRON.png' %}" class="d-block" alt="Bugatti Chiron">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bugatti Chiron</h5>
+                        <p>Velocidad y lujo en su máxima expresión</p>
+                    </div>
+                </div>
+                <!-- Auto 3: McLaren -->
+                <div class="carousel-item">
+                    <img src="{% static 'APP/assets/img/portfolio/mclaren.png' %}" class="d-block" alt="McLaren">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>McLaren</h5>
+                        <p>Ingeniería británica de alto rendimiento</p>
+                    </div>
+                </div>
+                <!-- Auto 4: Ferrari Enzo -->
+                <div class="carousel-item">
+                    <img src="{% static 'APP/assets/img/portfolio/ferrari.png' %}" class="d-block" alt="Ferrari Enzo">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Ferrari Enzo</h5>
+                        <p>Exclusivo, potente y legendario</p>
+                    </div>
+                </div>
+                <!-- Auto 5: Hyper Car 2 -->
+                <div class="carousel-item">
+                    <img src="{% static 'APP/assets/img/portfolio/cake.png' %}" class="d-block" alt="Hyper Car 2">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Hyper Car 2</h5>
+                        <p>Descripción breve del auto 2</p>
+                    </div>
+                </div>
+                <!-- Auto 6: Hyper Car 3 -->
+                <div class="carousel-item">
+                    <img src="{% static 'APP/assets/img/portfolio/circus.png' %}" class="d-block" alt="Hyper Car 3">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Hyper Car 3</h5>
+                        <p>Descripción breve del auto 3</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Controles -->
+            <button class="carousel-control-prev" type="button" data-bs-target="#carCarousel" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carCarousel" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+    </div>
+</section>
+{% endblock main %}

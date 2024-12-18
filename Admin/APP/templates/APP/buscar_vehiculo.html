@@ -1,0 +1,143 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    html, body {
+        background-color: #121212;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-section#portfolio {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    h2, h3 {
+        color: #e60000;
+        text-transform: uppercase;
+    }
+
+    h2.text-center.mb-4 {
+        margin-bottom: 2rem;
+    }
+
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 1.5rem;
+    }
+
+    table tr th, table tr td {
+        border: 1px solid #333333;
+        padding: 0.75rem;
+        vertical-align: middle;
+    }
+
+    table thead th {
+        background-color: #1a1a1a;
+        color: #e60000;
+        text-transform: uppercase;
+        font-weight: 700;
+        text-align: left;
+    }
+
+    table tr:nth-child(even) {
+        background-color: #1a1a1a;
+    }
+
+    table tr:nth-child(odd) {
+        background-color: #1f1f1f;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="tel"],
+    input[type="file"],
+    select {
+        background-color: #1a1a1a;
+        border: 1px solid #333333;
+        color: #ffffff;
+        width: 100%;
+        padding: 0.5rem;
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    input[type="tel"]:focus,
+    input[type="file"]:focus,
+    select:focus {
+        outline: none;
+        border-color: #e60000;
+    }
+
+    input[type="submit"] {
+        background-color: #e60000;
+        border: none;
+        color: #ffffff;
+        text-transform: uppercase;
+        font-weight: 700;
+        padding: 0.75rem 1.5rem;
+        cursor: pointer;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #ff1a1a;
+    }
+
+    img {
+        border: 1px solid #333333;
+    }
+
+    .mt-5 {
+        margin-top: 3rem !important;
+    }
+</style>
+
+<section class="page-section portfolio" id="portfolio" style="margin-top: 50px;">
+    <div class="container">
+        <h2 class="text-center mb-4">Buscar Vehículo</h2>
+
+        <!-- Formulario para buscar vehículo -->
+        <form action="" method="POST">
+            {% csrf_token %}
+            <table>
+                {{ mi_formulario.as_table }}
+            </table>
+            <div class="text-center">
+                <input type="submit" value="Buscar">
+            </div>
+        </form>
+
+        {% if vehiculos %}
+          <h3 class="mt-5">Resultados de la búsqueda:</h3>
+          <table>
+            <thead>
+              <tr>
+                <th>Unidad</th>
+                <th>Modelo</th>
+                <th>Kilometraje</th>
+                <th>Precio (USD)</th>
+                <th>Foto</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for vehiculo in vehiculos %}
+                <tr>
+                  <td>{{ vehiculo.unidad }}</td>
+                  <td>{{ vehiculo.modelo }}</td>
+                  <td>{{ vehiculo.kilometraje }}</td>
+                  <td>{{ vehiculo.precio_usd }}</td>
+                  <td><img src="{{ vehiculo.foto.url }}" alt="Foto del vehículo" width="100"></td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endif %}
+    </div>
+</section>
+{% endblock main %}

@@ -1,0 +1,83 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    html, body {
+        background-color: #121212;
+        margin: 0;
+        padding: 0;
+    }
+
+    .page-section#contact {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .page-section-heading {
+        color: #e60000 !important;
+    }
+
+    .divider-custom-line {
+        background-color: #e60000;
+    }
+
+    .divider-custom-icon i {
+        color: #e60000;
+    }
+
+    .form-control {
+        background-color: #1a1a1a;
+        border: 1px solid #333333;
+        color: #ffffff;
+    }
+    .form-control:focus {
+        background-color: #1a1a1a;
+        border-color: #e60000;
+        box-shadow: none;
+        color: #ffffff;
+    }
+
+    label {
+        color: #cccccc;
+    }
+
+    .btn.btn-primary.btn-xl {
+        background-color: #e60000;
+        border-color: #e60000;
+        text-transform: uppercase;  
+        font-weight: 700;
+        transition: background-color 0.2s ease-in-out;
+    }
+    .btn.btn-primary.btn-xl:hover {
+        background-color: #ff1a1a;
+        border-color: #ff1a1a;
+    }
+</style>
+
+<section class="page-section portfolio" id="contact"style="margin-top: 70px;">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase mb-4">Publicar Hyper Car</h2>
+        <div class="divider-custom mb-4">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary btn-xl" type="submit">Publicar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    html, body {
+        background-color: #121212;
+        margin: 0;
+        padding: 0;
+    }
+
+    .login-section {
+        /* Usamos padding y margin dentro de login-section para espaciar el contenido */
+        padding-top: 10rem;
+        padding-bottom: 5rem;
+    }
+
+    h2 {
+        color: #e60000;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+    }
+
+    .alert-info {
+        background-color: #1f1f1f;
+        border: 1px solid #333333;
+        color: #ffffff;
+    }
+
+    .border {
+        border: 1px solid #333333 !important;
+        background-color: #1a1a1a !important;
+    }
+
+    .rounded {
+        border-radius: 0.5rem !important;
+    }
+
+    .shadow-sm {
+        box-shadow: none !important;
+    }
+
+    /* Estilos para los campos del formulario */
+    .form-control {
+        background-color: #1a1a1a;
+        border: 1px solid #333333;
+        color: #ffffff;
+    }
+
+    .form-control:focus {
+        background-color: #1a1a1a;
+        border-color: #e60000;
+        box-shadow: none;
+    }
+
+    label {
+        color: #cccccc;
+    }
+
+    /* Botón estilo rojo */
+    .btn.btn-primary {
+        background-color: #e60000;
+        border-color: #e60000;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn.btn-primary:hover {
+        background-color: #ff1a1a;
+        border-color: #ff1a1a;
+        color: #000000;
+    }
+
+    .d-grid.mt-3 {
+        margin-top: 1.5rem !important;
+    }
+
+    .container.login-section {
+        background-color: #121212;
+        /* Ya no es necesario poner margin-top aquí, lo manejamos con padding arriba */
+    }
+</style>
+
+<div class="container login-section">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <!-- Título del formulario -->
+            <h2 class="text-center">Iniciar Sesión</h2>
+            
+            <!-- Mensaje de la vista -->
+            {% if msg_login %}
+                <div class="alert alert-info text-center">
+                    {{ msg_login }}
+                </div>
+            {% endif %}
+
+            <!-- Formulario de inicio de sesión -->
+            <form action="" method="POST" class="border p-4 rounded">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid mt-3">
+                    <button type="submit" class="btn btn-primary">Iniciar sesión</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock main %}

@@ -1,0 +1,15 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="text-center text-danger mb-4">Confirmar Eliminación</h2>
+    <p class="text-center fs-5">¿Estás seguro de que deseas eliminar el vehículo <strong>{{ object.modelo }}</strong>?</p>
+
+    <form method="post" class="text-center">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-danger">Eliminar</button>
+        <a href="{% url 'vehiculos-list' %}" class="btn btn-secondary">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

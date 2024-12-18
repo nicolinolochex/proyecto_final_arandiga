@@ -1,0 +1,17 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<div class="container mt-5">
+    <h2 class="text-center text-primary mb-4">Editar Vehículo</h2>
+
+    <form method="post" enctype="multipart/form-data" class="shadow p-4 rounded bg-light">
+        {% csrf_token %}
+        {{ form.as_p }}  <!-- Renderiza el formulario -->
+        <div class="text-center">
+            <button type="submit" class="btn btn-success">Guardar Cambios</button>
+            <a href="{% url 'vehiculos-list' %}" class="btn btn-secondary">Cancelar</a>
+        </div>
+    </form>
+</div>
+{% endblock %}

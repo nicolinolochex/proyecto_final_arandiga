@@ -1,0 +1,35 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    html, body {
+        background-color: #121212;
+        margin: 0;
+        padding: 0;
+    }
+
+    .logout-section {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 50vh;
+    }
+
+    .logout-message {
+        font-size: 1.5rem;
+        color: #e60000;
+        text-align: center;
+        text-transform: uppercase;
+        font-weight: 700;
+    }
+</style>
+
+<div class="logout-section">
+    <p class="logout-message">Te has deslogueado</p>
+</div>
+{% endblock main %}

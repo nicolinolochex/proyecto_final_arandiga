@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %} Resultados de la Búsqueda {% endblock title %}
+
+{% block main %}
+    <h2>Resultados de la búsqueda</h2>
+    {% if vehiculos %}
+        <div class="vehicle-results">
+            {% for vehiculo in vehiculos %}
+                <div class="vehicle-card">
+                    <!-- Imagen del vehículo -->
+                    <div class="vehicle-image">
+                        <!-- Aquí renderizamos la imagen usando la URL almacenada en el modelo -->
+                        <img src="{{ vehiculo.foto.url }}" alt="Foto del vehículo" class="img-fluid" />
+                    </div>
+
+                    <!-- Detalles del vehículo -->
+                    <div class="vehicle-details">
+                        <h3>{{ vehiculo.unidad }} - {{ vehiculo.modelo }} ({{ vehiculo.kilometraje }} km)</h3>
+                        <p><strong>Kilometraje:</strong> {{ vehiculo.kilometraje }} km</p>
+                        <p><strong>Precio:</strong> USD {{ vehiculo.precio_usd }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p>No se encontraron vehículos con los criterios especificados.</p>
+    {% endif %}
+{% endblock %}

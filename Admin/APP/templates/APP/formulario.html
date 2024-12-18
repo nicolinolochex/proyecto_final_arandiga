@@ -1,0 +1,152 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    .page-section#contact {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .page-section-heading {
+        color: #e60000 !important;
+    }
+
+    .divider-custom-line {
+        background-color: #e60000;
+    }
+
+    .divider-custom-icon i {
+        color: #e60000;
+    }
+
+    .alert-success {
+        background-color: #1f1f1f;
+        border: 1px solid #333333;
+        color: #ffffff;
+    }
+
+    /* Estilos para inputs */
+    .form-control {
+        background-color: #1a1a1a;
+        border: 1px solid #333333;
+        color: #ffffff;
+    }
+
+    .form-control:focus {
+        background-color: #1a1a1a;
+        border-color: #e60000;
+        box-shadow: none;
+    }
+
+    .form-floating label {
+        color: #cccccc;
+    }
+
+    /* Estilos para campos inválidos */
+    .form-control.is-invalid {
+        border-color: #e60000;
+    }
+
+    .invalid-feedback p {
+        margin: 0;
+        color: #ff1a1a;
+    }
+
+    /* Botón estilo rojo */
+    .btn.btn-primary.btn-xl {
+        background-color: #e60000;
+        border-color: #e60000;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: background-color 0.2s ease-in-out;
+    }
+    .btn.btn-primary.btn-xl:hover {
+        background-color: #ff1a1a;
+        border-color: #ff1a1a;
+    }
+</style>
+
+<section class="page-section" id="contact" style="margin-top: 50px;">
+    <div class="container">
+        <h2 class="page-section-heading text-center text-uppercase mb-4">Contact Us</h2>
+        <div class="divider-custom mb-4">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        
+        {% if form.is_valid %}
+            <div class="alert alert-success text-center mb-4" role="alert">
+                Your message has been sent successfully!
+            </div>
+        {% endif %}
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-xl-7">
+                <form method="post" action="">
+                    {% csrf_token %}
+                    
+                    <!-- Full Name -->
+                    <div class="form-floating mb-3">
+                        <input type="text" id="id_name" name="name" class="form-control {% if form.name.errors %}is-invalid{% endif %}" value="{{ form.name.value|default:'' }}">
+                        <label for="id_name">Full Name</label>
+                        {% if form.name.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.name.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Email Address -->
+                    <div class="form-floating mb-3">
+                        <input type="email" id="id_email" name="email" class="form-control {% if form.email.errors %}is-invalid{% endif %}" value="{{ form.email.value|default:'' }}">
+                        <label for="id_email">Email Address</label>
+                        {% if form.email.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.email.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Phone Number -->
+                    <div class="form-floating mb-3">
+                        <input type="text" id="id_phone" name="phone" class="form-control {% if form.phone.errors %}is-invalid{% endif %}" value="{{ form.phone.value|default:'' }}">
+                        <label for="id_phone">Phone Number</label>
+                        {% if form.phone.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.phone.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <!-- Message -->
+                    <div class="form-floating mb-3">
+                        <textarea id="id_message" name="message" class="form-control {% if form.message.errors %}is-invalid{% endif %}" style="height: 150px;">{{ form.message.value|default:'' }}</textarea>
+                        <label for="id_message">Message</label>
+                        {% if form.message.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.message.errors %}
+                                    <p>{{ error }}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="text-center mt-4">
+                        <button class="btn btn-primary btn-xl" type="submit">Send</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock main %}

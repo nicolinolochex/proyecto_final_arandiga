@@ -1,0 +1,78 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    /* Sección oscura con acentos en rojo */
+    .page-section#about {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 80px;
+        padding-bottom: 80px;
+    }
+
+    .page-section-heading {
+        color: #e60000 !important;
+    }
+
+    .divider-custom-line {
+        background-color: #e60000;
+    }
+
+    .divider-custom-icon i {
+        color: #e60000;
+    }
+
+    .btn.btn-outline-light {
+        border: 2px solid #e60000;
+        color: #e60000;
+        text-transform: uppercase;
+        font-weight: 700;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .btn.btn-outline-light:hover {
+        background-color: #e60000;
+        color: #000000;
+        border-color: #e60000;
+    }
+
+    p.lead {
+        color: #cccccc;
+        line-height: 1.8;
+    }
+</style>
+
+<section class="page-section" id="about" style="margin-top: 50px;">
+    <div class="container">
+        <!-- About Section Heading-->
+        <h2 class="page-section-heading text-center text-uppercase mb-4">About</h2>
+        <!-- Icon Divider-->
+        <div class="divider-custom mb-4">
+            <div class="divider-custom-line"></div>
+            <div class="divider-custom-icon"><i class="fas fa-star"></i></div>
+            <div class="divider-custom-line"></div>
+        </div>
+        <!-- About Section Content-->
+        <div class="row">
+            <div class="col-lg-4 ms-auto">
+                <p class="lead">
+                    Hyper Solutions nace de la pasión por la exclusividad y la innovación tecnológica. Nuestra agencia ofrece una colección cuidadosamente seleccionada de hyper cars, máquinas excepcionales que combinan diseño, potencia y sofisticación. Cada vehículo es una declaración de estilo y carácter, una experiencia de conducción inigualable para aquellos que buscan lo extraordinario.
+                </p>
+            </div>
+            <div class="col-lg-4 me-auto">
+                <p class="lead">
+                    Detrás de esta plataforma se encuentra la visión de Catriel Nicolás Arandiga, un profesional con sólida experiencia en el desarrollo de soluciones tecnológicas y plataformas digitales. Conectamos a clientes exigentes con oportunidades únicas, brindando asesoría experta y un servicio personalizado. Tu hyper car no es solo un automóvil, es una inversión en prestigio, alto rendimiento y satisfacción total.
+                </p>
+            </div>
+        </div>
+        <!-- About Section Button-->
+        <div class="text-center mt-4">
+            <a class="btn btn-xl btn-outline-light" href="https://www.linkedin.com/in/catriel-nicolas-arandiga/" target="_blank">
+                <i class="fab fa-linkedin-in me-2"></i>
+                Conoce mas a su Fundador
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock main %}

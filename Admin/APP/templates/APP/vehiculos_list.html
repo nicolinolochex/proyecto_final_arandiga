@@ -1,0 +1,173 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    .page-section#listado-vehiculos {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+    }
+
+    h2 {
+        color: #e60000;
+        text-transform: uppercase;
+        margin-bottom: 2rem;
+    }
+
+    /* Estilos para la tabla sin clases Bootstrap */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 2rem;
+    }
+
+    table thead th {
+        background-color: #1a1a1a;
+        color: #e60000;
+        text-transform: uppercase;
+        font-weight: 700;
+        border: 1px solid #333333;
+        padding: 0.75rem;
+        text-align: left;
+    }
+
+    table tbody tr {
+        background-color: #1f1f1f;
+        border: 1px solid #333333;
+    }
+
+    table tbody tr:nth-child(even) {
+        background-color: #1a1a1a;
+    }
+
+    table td {
+        padding: 0.75rem;
+        vertical-align: middle;
+        border: 1px solid #333333;
+        color: #ffffff;
+    }
+
+    table img {
+        border: 1px solid #333333;
+    }
+
+    /* Estilos para los botones */
+    .btn {
+        font-weight: 700;
+        text-transform: uppercase;
+        border: none;
+        cursor: pointer;
+        padding: 0.3rem 0.6rem;
+        margin-right: 0.5rem;
+    }
+
+    .btn-warning {
+        background-color: #e68a00;
+        color: #ffffff;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-warning:hover {
+        background-color: #ff9933;
+        color: #000000;
+    }
+
+    .btn-danger {
+        background-color: #e60000;
+        color: #ffffff;
+        transition: background-color 0.2s ease-in-out;
+    }
+
+    .btn-danger:hover {
+        background-color: #ff1a1a;
+        color: #000000;
+    }
+
+    /* Paginación */
+    .pagination {
+        text-align: center;
+        margin-top: 2rem;
+    }
+
+    .pagination .step-links a {
+        color: #e60000;
+        text-decoration: none;
+        font-weight: 700;
+        margin: 0 0.5rem;
+    }
+
+    .pagination .step-links a:hover {
+        color: #ff1a1a;
+    }
+
+    .pagination .current {
+        color: #cccccc;
+        font-weight: 700;
+        margin: 0 0.5rem;
+    }
+</style>
+
+<section class="page-section" id="listado-vehiculos">
+    <div class="container">
+        <h2 class="text-center">Listado de Vehículos</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Unidad</th>
+                    <th>Modelo</th>
+                    <th>Kilometraje</th>
+                    <th>Precio (USD)</th>
+                    <th>Foto</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for vehiculo in vehiculos %}
+                <tr>
+                    <td>{{ vehiculo.id }}</td>
+                    <td>{{ vehiculo.unidad }}</td>
+                    <td>{{ vehiculo.modelo }}</td>
+                    <td>{{ vehiculo.kilometraje }} km</td>
+                    <td>${{ vehiculo.precio_usd }}</td>
+                    <td>
+                        {% if vehiculo.foto %}
+                        <img src="{{ vehiculo.foto.url }}" alt="Foto del vehículo" width="100" />
+                        {% else %}
+                        No disponible
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="{% url 'vehiculos-update' vehiculo.id %}" class="btn btn-warning">Editar</a>
+                        <a href="{% url 'vehiculos-delete' vehiculo.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+                {% empty %}
+                <tr>
+                    <td colspan="7" class="text-center" style="color:#ffffff;">No hay vehículos disponibles.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Paginación -->
+        <div class="pagination mt-4">
+            <span class="step-links">
+                {% if page_obj.has_previous %}
+                    <a href="?page=1">&laquo; Primero</a>
+                    <a href="?page={{ page_obj.previous_page_number }}">Anterior</a>
+                {% endif %}
+
+                <span class="current">Página {{ page_obj.number }} de {{ page_obj.paginator.num_pages }}.</span>
+
+                {% if page_obj.has_next %}
+                    <a href="?page={{ page_obj.next_page_number }}">Siguiente</a>
+                    <a href="?page={{ page_obj.paginator.num_pages }}">Último &raquo;</a>
+                {% endif %}
+            </span>
+        </div>
+    </div>
+</section>
+{% endblock main %}
