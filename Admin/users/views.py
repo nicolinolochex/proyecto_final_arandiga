@@ -7,7 +7,17 @@ from users.forms import UserEditForm
 from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
-
+from users.models import Avatar  # Importa tu modelo Avatar
+from django.shortcuts import render
+from django.contrib.auth.decorators import login_required
+from users.forms import UserEditForm
+from users.models import Avatar  # Importa tu modelo Avatar
+from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .forms import UserRegisterForm
 
 def login_request(request):
 
@@ -49,29 +59,37 @@ def register(request):
     return render(request, "users/registro.html", {"form": form, "msg_register": msg_register})
 
 
-# Vista de editar el perfil
-# Obligamos a loguearse para editar los datos del usuario activo
 @login_required
 def editar_perfil(request):
+    """Vista para editar perfil (datos de User) y actualizar la imagen en Avatar."""
 
-    # El usuario para poder editar su perfil primero debe estar logueado.
-    # Al estar logueado, podremos encontrar dentro del request la instancia
-    # del usuario -> request.user
     usuario = request.user
+    
+    # Intentamos obtener o crear el Avatar asociado al user.
+    try:
+        avatar = usuario.avatar  # Esto asume que en Avatar tienes: user = models.OneToOneField(User, related_name='avatar')
+    except Avatar.DoesNotExist:
+        avatar = Avatar.objects.create(user=usuario)
 
     if request.method == 'POST':
-
-        miFormulario = UserEditForm(request.POST, instance=request.user)
-
+        miFormulario = UserEditForm(request.POST, request.FILES, instance=usuario)
+        
         if miFormulario.is_valid():
-
+            # Guarda los datos del usuario (email, first_name, last_name, etc.)
             miFormulario.save()
 
-            # Retornamos al inicio una vez guardado los datos
-            return render(request, "APP/inicio.html")
+            # Si se subió una imagen (campo 'imagen' en el form), la asignamos al Avatar
+            if miFormulario.cleaned_data.get("imagen"):
+                avatar.imagen = miFormulario.cleaned_data["imagen"]
+                avatar.save()
 
+            return render(request, "APP/inicio.html")
+        else:
+            # Para ver por qué falla la validación (si ocurre)
+            print("Errores del formulario:", miFormulario.errors)
     else:
-        miFormulario = UserEditForm(instance=request.user)
+        # Carga el form con los datos actuales del usuario
+        miFormulario = UserEditForm(instance=usuario)
 
     return render(
         request,
@@ -81,7 +99,6 @@ def editar_perfil(request):
             "usuario": usuario
         }
     )
-
 class CambiarPassView (LoginRequiredMixin, PasswordChangeView):
 
     template_name = "users/cambiar_pass.html"

@@ -98,6 +98,7 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
+                        <!-- Menú principal -->
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3" href="{% url 'inicio' %}">Home</a>
                         </li>
@@ -122,6 +123,8 @@
                         <li class="nav-item mx-0 mx-lg-1">
                             <a class="nav-link py-3 px-0 px-lg-3" href="{% url 'aboutv2' %}">Nosotros</a>
                         </li>
+
+                        <!-- Menú Usuarios (cambia si el usuario está autenticado) -->
                         <li class="nav-item dropdown mx-0 mx-lg-1">
                             <a class="nav-link dropdown-toggle py-3 px-0 px-lg-3" href="#" id="navbarUserDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                                 Usuarios
@@ -129,16 +132,24 @@
                             <ul class="dropdown-menu" aria-labelledby="navbarUserDropdown">
                                 {% if request.user.is_authenticated %}
                                     <li><a class="dropdown-item" href="{% url 'EditarPerfil' %}">Editar Perfil</a></li>
-                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesion</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Logout' %}">Cerrar Sesión</a></li>
                                 {% else %}
-                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesion</a></li>
+                                    <li><a class="dropdown-item" href="{% url 'Login' %}">Iniciar Sesión</a></li>
                                     <li><a class="dropdown-item" href="{% url 'Register' %}">Registrarse</a></li>
                                 {% endif %}
                             </ul>
                         </li>
+
+                        <!-- Mostrar nombre y avatar si está autenticado -->
                         {% if request.user.is_authenticated %}
                             <li class="nav-item mx-0 mx-lg-1 d-flex align-items-center">
-                                <span class="username-display nav-link py-3 px-0 px-lg-3">Usuario logueado: {{ request.user.username }}</span>
+                                <span class="username-display nav-link py-3 px-0 px-lg-3">
+                                    Usuario logueado: {{ request.user.username }}
+                                </span>
+                                {% if request.user.avatar %}
+                                    <img src="{{ request.user.avatar.imagen.url }}"
+                                         alt="" height="60px">
+                                {% endif %}
                             </li>
                         {% endif %}
                     </ul>
@@ -178,7 +189,11 @@
         </footer>
         
         <div class="copyright py-4 text-center text-white">
-            <div class="container"><small>Copyright &copy; Catriel Arandiga 2024</small></div>
+            <div class="container">
+                <small>
+                    Copyright &copy; Catriel Arandiga 2024
+                </small>
+            </div>
         </div>
 
         <script src="{% static 'APP/js/scripts.js' %}"></script>
