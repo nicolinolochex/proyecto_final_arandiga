@@ -8,16 +8,9 @@ from django.contrib.auth.views import PasswordChangeView
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from users.models import Avatar  # Importa tu modelo Avatar
-from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from users.forms import UserEditForm
 from users.models import Avatar  # Importa tu modelo Avatar
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.views import PasswordChangeView
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.urls import reverse_lazy
-from .forms import UserRegisterForm
 
 def login_request(request):
 
