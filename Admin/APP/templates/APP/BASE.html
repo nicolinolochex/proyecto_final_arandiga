@@ -146,9 +146,8 @@
                                 <span class="username-display nav-link py-3 px-0 px-lg-3">
                                     Usuario logueado: {{ request.user.username }}
                                 </span>
-                                {% if request.user.avatar %}
-                                    <img src="{{ request.user.avatar.imagen.url }}"
-                                         alt="" height="60px">
+                                {% if request.user.avatar and request.user.avatar.imagen %}
+                                <img src="{{ request.user.avatar.imagen.url }}" alt="Avatar de {{ request.user.username }}" height="60px">
                                 {% endif %}
                             </li>
                         {% endif %}
