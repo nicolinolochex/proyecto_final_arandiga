@@ -127,16 +127,24 @@
             <tbody>
                 {% for vehiculo in vehiculos %}
                 <tr>
-                    <td>{{ vehiculo.id }}</td>
+                    <td>
+                        {% if vehiculo.id %}
+                            <a href="{% url 'vehiculo-detail' vehiculo.id %}" class="text-info">
+                                {{ vehiculo.id }}
+                            </a>
+                        {% else %}
+                            <span class="text-danger">ID no disponible</span>
+                        {% endif %}
+                    </td>
                     <td>{{ vehiculo.unidad }}</td>
                     <td>{{ vehiculo.modelo }}</td>
                     <td>{{ vehiculo.kilometraje }} km</td>
                     <td>${{ vehiculo.precio_usd }}</td>
                     <td>
                         {% if vehiculo.foto %}
-                        <img src="{{ vehiculo.foto.url }}" alt="Foto del vehículo" width="100" />
+                            <img src="{{ vehiculo.foto.url }}" alt="Foto del vehículo" width="100" />
                         {% else %}
-                        No disponible
+                            No disponible
                         {% endif %}
                     </td>
                     <td>

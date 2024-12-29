@@ -3,9 +3,10 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from .forms import ContactForm, VehiculosClientesForm, TrabajaConNosotrosForm, BuscaVehiculoForm
 from .models import VehiculosClientes
-from django.views.generic import ListView, UpdateView, DeleteView
+from django.views.generic import ListView, UpdateView, DeleteView, DetailView
 from django.urls import reverse_lazy
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import VehiculosClientes
 
 def inicio(request):
     return render(request, "APP/inicio.html")
@@ -122,3 +123,7 @@ class VehiculosClientesDeleteView(LoginRequiredMixin, UserPassesTestMixin, Delet
         return redirect('mensaje_no_permitido')  # Debe coincidir con el name del path
     
 
+class VehiculosClientesDetailView(LoginRequiredMixin, DetailView):
+    model = VehiculosClientes
+    template_name = 'APP/vehiculos_detail.html'
+    context_object_name = 'vehiculo'

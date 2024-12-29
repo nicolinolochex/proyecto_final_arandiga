@@ -1,0 +1,17 @@
+{% extends "APP/BASE.html" %}
+{% block main %}
+<div class="container mt-5">
+    <h2>Detalle del Vehículo</h2>
+    <p><strong>ID:</strong> {{ vehiculo.id }}</p>
+    <p><strong>Unidad:</strong> {{ vehiculo.unidad }}</p>
+    <p><strong>Modelo:</strong> {{ vehiculo.modelo }}</p>
+    <p><strong>Kilometraje:</strong> {{ vehiculo.kilometraje }} km</p>
+    <p><strong>Precio:</strong> ${{ vehiculo.precio_usd }}</p>
+    {% if vehiculo.foto %}
+        <img src="{{ vehiculo.foto.url }}" alt="Foto del vehículo" width="300">
+    {% else %}
+        <p>No hay foto disponible</p>
+    {% endif %}
+    <a href="{% url 'vehiculos-list' %}">Volver al listado</a>
+</div>
+{% endblock main %}

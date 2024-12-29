@@ -2,7 +2,12 @@ from django.urls import path
 from APP import views
 from django.conf import settings
 from django.conf.urls.static import static
-from .views import VehiculosClientesListView, VehiculosClientesUpdateView, VehiculosClientesDeleteView
+from .views import (
+    VehiculosClientesListView, 
+    VehiculosClientesUpdateView, 
+    VehiculosClientesDeleteView, 
+    VehiculosClientesDetailView  # Asegúrate de incluir esto
+)
 
 urlpatterns = [
     path('', views.inicio, name='inicio'),
@@ -18,6 +23,7 @@ urlpatterns = [
     path('vehiculos/editar/<int:pk>/', VehiculosClientesUpdateView.as_view(), name='vehiculos-update'),
     path('vehiculos/eliminar/<int:pk>/', VehiculosClientesDeleteView.as_view(), name='vehiculos-delete'),
     path('no_permitido/', views.no_permitido, name='mensaje_no_permitido'),
+    path('vehiculos/detalle/<int:pk>/', VehiculosClientesDetailView.as_view(), name='vehiculo-detail'),
     ]
 
 if settings.DEBUG:
