@@ -31,7 +31,7 @@ Puedes encontrar el archivo Excel de testing en la siguiente ruta dentro del rep
 
 | **Usuario**        | **Contraseña**  |
 |--------------------|-----------------|
-| Testing_Staff      | Staff123      |
+| Testing_Staff      | Staff123        |
 
 
 ## Cómo Usar el Archivo de Testing
