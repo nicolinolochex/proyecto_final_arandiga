@@ -1,39 +1,50 @@
-# Arandiga_Proyecto
+# Arandiga Proyecto
 
-**15/12 17:45hs (Requerimientos cumplidos)**
+**Fecha de Actualización:** 29 de diciembre de 2024, 17:45 hrs  
+**Estado:** Todos los requerimientos se encuentran cumplidos ✅
 
-El proyecto consta de una página de superautos.
+## Descripción del Proyecto
+
+El proyecto consiste en una **página web de superautos**. La descripción detallada de la funcionalidad de la página se encuentra en los videos adjuntos.
+
+## Archivos de Testing
+
+Puedes encontrar el archivo Excel de testing en la siguiente ruta dentro del repositorio:
+
+📁 **[Test/data/Casos_de_prueba.xlsx](Test/data/Casos_de_prueba.xlsx)**
+
+## Video Descriptivo de la Funcionalidad
+
+[![Vista Previa del Video](https://img.youtube.com/vi/vuFoLNKEG9s/0.jpg)](https://youtu.be/vuFoLNKEG9s)
+
+[Mira el video descriptivo aquí](https://youtu.be/vuFoLNKEG9s)
+
+## Credenciales de Acceso
+
+### **Super Usuario**
+
+| **Usuario** | **Contraseña**    |
+|-------------|-------------------|
+| catri       | Catriel1992       |
+
+### **Usuario Común**
+
+| **Usuario**        | **Contraseña**  |
+|--------------------|-----------------|
+| Testing_Staff      | Staff123..      |
+
+
+## Cómo Usar el Archivo de Testing
+
+1. **Ubicación:** `Test/data/Casos_de_prueba.xlsx`
+2. **Descripción:** Este archivo contiene casos de prueba para la funcionalidad de gestión de usuarios.
+3. **Instrucciones:**
+   - Abre el archivo `Casos_de_prueba.xlsx` con tu programa de hoja de cálculo preferido (Excel, LibreOffice Calc, etc.).
+   - Revisa los datos y úsalos para cargar datos en la base de datos o realizar pruebas unitarias.
+
+
+
+![Pantalla de Inicio](ruta/a/tu/imagen_inicio.png)
 
 ## Estructura del Proyecto
 
-### Navegación Principal
-
-1. **[Portfolio/Home](http://127.0.0.1:8000/APP/inicio/):**  
-   Es la pestaña de inicio, donde se muestra una lista de los autos en cartera. Actualmente, la Ferrari Enzo es la única desarrollada. Puedes hacer clic en el auto para ver una descripción detallada de la unidad.
-   
-   ![Ferrari Enzo](image.png)
-
-2. **[Publica tu Hyper Car](http://127.0.0.1:8000/APP/publicar_rodado/):**  
-   Aquí puedes publicar tu auto adjuntando los detalles y una foto.
-   
-   ![Formulario de publicación](image-1.png)
-
-3. **[Autos ya en Agencia](http://127.0.0.1:8000/APP/buscar-vehiculo/):**  
-   En esta sección, puedes buscar autos ya cargados en la agencia por clientes. El buscador permite filtrar por modelo y año.
-   
-   Además, se desarrolló una funcionalidad para renderizar las imágenes de los autos cargados por los clientes.
-   
-   ![Búsqueda de vehículos](image-2.png)
-
-4. **[ABOUT](http://127.0.0.1:8000/APP/acercade/):**  
-   Esta sección contiene una descripción de la empresa.
-
-5. **[CONTACT](http://127.0.0.1:8000/APP/formulario/):**  
-   Formulario de contacto (Formulario 2/3).
-
-6. **[TRABAJA CON NOSOTROS](http://127.0.0.1:8000/APP/publicar_cv/):**  
-   Formulario donde los interesados pueden cargar su CV y datos para trabajar en la empresa (Formulario 3/3).
-
-### Footer
-
-En el footer se agregó un enlace a mi perfil de LinkedIn.
