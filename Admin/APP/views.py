@@ -5,7 +5,7 @@ from .forms import ContactForm, VehiculosClientesForm, TrabajaConNosotrosForm, B
 from .models import VehiculosClientes
 from django.views.generic import ListView, UpdateView, DeleteView
 from django.urls import reverse_lazy
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 
 def inicio(request):
     return render(request, "APP/inicio.html")
@@ -82,6 +82,10 @@ def buscar_vehiculo(request):
         "vehiculos": vehiculos  # Pasamos los vehículos filtrados o vacíos
     })
 
+def no_permitido(request):
+    return render(request, "APP/mensaje_no_permitido.html", {
+        "mensaje": "Solo un superusuario puede Editar/Borrar un registro."
+    })
 
 
 class VehiculosClientesListView(LoginRequiredMixin, ListView):
@@ -92,13 +96,29 @@ class VehiculosClientesListView(LoginRequiredMixin, ListView):
 
 
 
-class VehiculosClientesUpdateView(UpdateView):
+class VehiculosClientesUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = VehiculosClientes
-    template_name = "APP/vehiculos_edit.html"  # Ruta de la plantilla para editar
-    fields = ["unidad", "modelo", "kilometraje", "precio_usd", "foto"]  # Campos editables
-    success_url = reverse_lazy("vehiculos-list")  # URL de éxito tras actualizar
+    template_name = "APP/vehiculos_edit.html"
+    fields = ["unidad", "modelo", "kilometraje", "precio_usd", "foto"]
+    success_url = reverse_lazy("vehiculos-list")
 
-class VehiculosClientesDeleteView(DeleteView):
+    # Este método verifica si el usuario es superusuario
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        return redirect('mensaje_no_permitido')  # Debe coincidir con el name del path
+
+
+class VehiculosClientesDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = VehiculosClientes
     template_name = "APP/vehiculos_confirm_delete.html"  # Plantilla para confirmar la eliminación
     success_url = reverse_lazy("vehiculos-list")  # Redirección tras eliminar
+
+    def test_func(self):
+        return self.request.user.is_superuser
+
+    def handle_no_permission(self):
+        return redirect('mensaje_no_permitido')  # Debe coincidir con el name del path
+    
+

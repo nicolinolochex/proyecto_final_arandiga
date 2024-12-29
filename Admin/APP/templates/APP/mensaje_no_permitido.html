@@ -1,0 +1,49 @@
+{% extends 'APP/BASE.html' %}
+{% load static %}
+
+{% block main %}
+<style>
+    /* Reutilizamos el estilo de fondo y texto para mantener la coherencia */
+    .page-section#solo-superuser {
+        background-color: #121212;
+        color: #ffffff;
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+    }
+
+    .page-section-heading {
+        color: #e60000;
+        text-transform: uppercase;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    /* Ajustes para el mensaje central */
+    .error-message {
+        text-align: center;
+        font-size: 1.3rem;
+        color: #ff1a1a; /* Rojo más claro para destacar */
+        font-weight: 700;
+        margin-top: 2rem;
+    }
+</style>
+
+<section class="page-section" id="solo-superuser">
+    <div class="container">
+        <!-- Título -->
+        <h2 class="page-section-heading">Acceso Restringido</h2>
+
+        <!-- Mensaje principal -->
+        <div class="error-message">
+            {{ mensaje }}
+        </div>
+
+        <!-- Enlace de retorno al listado u otra página -->
+        <div class="text-center mt-4">
+            <a href="{% url 'vehiculos-list' %}" class="btn btn-danger" style="text-transform: uppercase; font-weight: 700;">
+                Volver al Listado de Vehículos
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock main %}

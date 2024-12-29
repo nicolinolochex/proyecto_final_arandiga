@@ -17,6 +17,7 @@ urlpatterns = [
     path('vehiculos/', VehiculosClientesListView.as_view(), name='vehiculos-list'),
     path('vehiculos/editar/<int:pk>/', VehiculosClientesUpdateView.as_view(), name='vehiculos-update'),
     path('vehiculos/eliminar/<int:pk>/', VehiculosClientesDeleteView.as_view(), name='vehiculos-delete'),
+    path('no_permitido/', views.no_permitido, name='mensaje_no_permitido'),
     ]
 
 if settings.DEBUG:
