@@ -11,7 +11,7 @@ El proyecto consiste en una **página web de superautos**. La descripción detal
 
 Puedes encontrar el archivo Excel de testing en la siguiente ruta dentro del repositorio:
 
-📁 **[Test/data/Casos_de_prueba.xlsx](Test/data/Casos_de_prueba.xlsx)**
+📁 **[Test/data/Casos de prueba.xlsx](https://github.com/nicolinolochex/proyecto_final_arandiga/blob/main/Admin/Test/data/Casos%20de%20prueba.xlsx)**
 
 ## Video Descriptivo de la Funcionalidad
 
@@ -31,20 +31,15 @@ Puedes encontrar el archivo Excel de testing en la siguiente ruta dentro del rep
 
 | **Usuario**        | **Contraseña**  |
 |--------------------|-----------------|
-| Testing_Staff      | Staff123..      |
+| Testing_Staff      | Staff123      |
 
 
 ## Cómo Usar el Archivo de Testing
 
-1. **Ubicación:** `Test/data/Casos_de_prueba.xlsx`
+1. **Ubicación:** `PF_Arandiga\Admin\Test\data>Casos_de_prueba.xlsx`
 2. **Descripción:** Este archivo contiene casos de prueba para la funcionalidad de gestión de usuarios.
 3. **Instrucciones:**
    - Abre el archivo `Casos_de_prueba.xlsx` con tu programa de hoja de cálculo preferido (Excel, LibreOffice Calc, etc.).
    - Revisa los datos y úsalos para cargar datos en la base de datos o realizar pruebas unitarias.
 
-
-
-![Pantalla de Inicio](ruta/a/tu/imagen_inicio.png)
-
-## Estructura del Proyecto
 
